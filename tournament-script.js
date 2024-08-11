@@ -81,11 +81,14 @@ function drawTournamentView() {
 
 function calculateHeigth(i) {
     var result = 0
+    var dif = 0
     if (i > 1)
         result = i * i - (i - 1) * (i - 1)
     else
         return 120 + 70 * i
-    return 120 + result * 70
+    i == 3 ? dif = 140 : dif = 0
+    i == 4 ? dif = 560 : null
+    return 120 + result * 70 + dif
 }
 
 function calculateTop(phase, game) {
@@ -95,6 +98,9 @@ function calculateTop(phase, game) {
         var i = nextImpar(phase + game)
         dif = 35 * i
     }
+    phase == 2 ? dif += 140 * game : null
+    phase == 3 ? dif += 70 + (game * 70 * 6) : null
+    phase == 4 ? dif += 280 : null
     return 20 + (calculateHeigth(phase) + 20) * game + dif
 }
 
