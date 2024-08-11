@@ -1,0 +1,668 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.body-class {
+    width:100vw;
+    height:100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://wallpapers.com/images/hd/tennis-pictures-9wprnsvgkmw77f02.jpg');
+}
+
+.geo-logo {
+    position:fixed;
+    top: 2%;
+    left: 6%;
+    height: 9%;
+    width: 20%;
+    background-size:cover;
+    background-position:center;
+    background-image: url('https://www.riverwoodcapital.com/wp-content/uploads/2022/08/Geopagos-Logo-Website.png');
+    border: solid 1px rgba(255,255,255,.7);
+    border-radius: 1rem;
+}
+
+.change-view {
+    position: fixed;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 9%;
+    color: white;
+    font-size: 150%;
+    border-radius: 50px;
+    background: #7c03a1;
+    background: -webkit-linear-gradient(to right, #e64533, #7c03a1);
+    background: linear-gradient(to right, #e64533, #7c03a1); 
+    cursor: pointer;
+}
+
+.change-view:hover {
+    background: #9246a9;
+    background: -webkit-linear-gradient(to right, #e0948c, #9246a9);
+    background: linear-gradient(to right, #e0948c, #9246a9);
+}
+
+.annotation {
+    position: fixed;
+    left: 70%;
+    top: 4.5%;
+    background-color: rgba(255,255,255,.2);
+    padding: .5%;
+    border-radius: 1rem;
+}
+
+.players-list {
+    position: fixed;
+    top: 13%;
+    left: 1%;
+    width: 50%;
+    height: 85%;
+    background-color: rgba(255,255,255,.7);
+    font-size: 150%;
+    border-radius: 25px;
+}
+
+.player-create {
+    position: fixed;
+    top: 13%;
+    left: 53%;
+    width: 46%;
+    height: 45%;
+    background-color: rgba(255,255,255,.7);
+    font-size: 150%;
+    border-radius: 25px;
+}
+
+.player-details {
+    position: fixed;
+    top: 60%;
+    left: 53%;
+    width: 46%;
+    height: 38%;
+    background-color: rgba(255,255,255,.7);
+    font-size: 150%;
+    border-radius: 25px;
+}
+
+.div-header {
+    position: relative;
+    width: 100%;
+    height: 11%;
+    display: flex;
+}
+
+.player-create .div-header {
+    height: 21%;
+}
+
+.player-details .div-header {
+    height: 25%;
+}
+
+.save-form {
+    width: 100%;
+    height: 79%;
+    top: 21%;
+    display: unset;
+}
+
+.save-form div {
+    height: 15%;
+}
+
+.list-title {
+    color: rgb(50,50,50);
+    font-size: 1.5rem;
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
+}
+
+.label-show {
+    font-size: 1rem;
+    margin-left: 7%;
+    padding-top: 3%;
+}
+
+.generic-btn {
+    margin-left: 1%;
+    width: 14%;
+    height: 70%;
+    margin-top: 1%;
+    border: solid 2px grey;
+    border-radius: 2rem;
+    background-image: linear-gradient();
+    background: #e1e1e1;
+    background: -webkit-linear-gradient(to right, #7a7a7a, #e1e1e1);
+    background: linear-gradient(to right, #7a7a7a, #e1e1e1);
+    cursor: pointer;
+}
+
+.male-btn {
+    background: #786ee6;
+    background: -webkit-linear-gradient(to right, #343379, #786ee6);
+    background: linear-gradient(to right, #343379, #786ee6);
+}
+
+.female-btn {
+    background: #e0a4d3;
+    background: -webkit-linear-gradient(to right, #8a4e81, #e0a4d3);
+    background: linear-gradient(to right, #8a4e81, #e0a4d3);
+}
+
+.save-btn {
+    background: #a4e0a5;
+    background: -webkit-linear-gradient(to right, #518a4e, #a4e0a5);
+    background: linear-gradient(to right, #518a4e, #a4e0a5);
+}
+
+.cancel-btn {
+    background: #e0a4a4;
+    background: -webkit-linear-gradient(to right, #8a4e4e, #e0a4a4);
+    background: linear-gradient(to right, #8a4e4e, #e0a4a4);
+}
+
+.players-table {
+    position: fixed;
+    top: 22%;
+    left: 3%;
+    width: 46%;
+    height: 72%;
+    background-color: white;
+    border: solid 1px grey;
+    overflow-y: scroll;
+}
+
+.players-table table {
+    width: 100%;
+}
+
+.players-table table thead {
+    font-size: 1rem;
+    background-color: grey;
+}
+
+.players-table table tbody tr {
+    cursor: pointer;
+    border-bottom: 1px solid grey;
+}
+
+.players-table table tbody tr:hover {
+    background-color: lightgrey;
+}
+
+.players-table table tbody tr td {
+    font-size: .8rem;
+    max-height: 10%;
+}
+
+.colId {
+    width: 7%;
+}
+
+.colName {
+    width: 55%;
+}
+
+.colStatus {
+    width: 12%;
+}
+
+.colAction {
+    width: 26%;
+}
+
+.control-label {
+    font-size: 1rem;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.dataEdit {
+    padding: 1%;
+    margin-left: 15%;
+    width: 35%;
+    background: green;
+    background: -webkit-linear-gradient(to right, green, #a4e0a5);
+    background-image: linear-gradient(to top, green, #a4e0a5);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.dataDelete {
+    padding: 1%;
+    margin-left: 5%;
+    width: 35%;
+    background: red;
+    background: -webkit-linear-gradient(to right, red, #e0a4a4);
+    background-image: linear-gradient(to top, red, #e0a4a4);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.control {
+    position: absolute;
+    font-size: 1rem;
+    width: 63%;
+    right: 4%;
+    margin-top: 1%;
+}
+
+.hide {
+    display: none;
+}
+
+#saveButtons {
+    position: absolute;
+    width: 100%;
+    height: 21%;
+    top: 79%;
+    margin-left: 35%;
+}
+
+.details-form {
+    width: 100%;
+    height: 75%;
+    top: 25%;
+    display: unset;
+}
+
+.details-form div {
+    height: 15%;
+    display: flex;
+}
+
+.details-form div div div {
+    transition: all 0.5s ease-out allow-discrete;
+}
+
+.details-form div div div a {
+    transform: translateX(-50%);
+}
+
+.level-bar {
+    position: absolute;
+    width: 70%;
+    right: 4%;
+    background-color: lightgrey;
+    border: solid 1px grey;
+    border-radius: 0.5rem;
+    max-height: 10%;
+    margin-top: -1%;
+}
+
+.level-bar div {
+    background-image: linear-gradient();
+    background: green;
+    background: -webkit-linear-gradient(to top, green, #54ff54);
+    background: linear-gradient(to top, green, #54ff54);
+    border-radius: 0.5rem;
+    height: 100%;
+    width: 0;
+}
+
+.level-bar div a {
+    position: absolute;
+    left: 50%;
+    transform: translateX(50%);
+    font-weight: bold;
+    bottom: -5%;
+    font-size: 1.4rem;
+}
+
+.text-detail {
+    bottom: 0;
+    font-size: 1rem;
+    font-weight: bolder;
+    margin-left: -1%;
+    margin-right: 5%;
+}
+
+.blue {
+    color: blue
+}
+
+.pink {
+    color: rgb(254, 26, 110);
+}
+
+.deletedRow {
+    background-color: rgb(214, 145, 156);
+}
+
+.load {
+    background-color: white;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    text-align: center;
+}
+
+.load h2 {
+    margin-top: 1%;
+}
+
+.processing {
+    background-color: rgba(0,0,0,.6);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    text-align: center;
+}
+
+.spin {
+    background-size: cover;
+    background-position: center;
+    width: 20vw;
+    height: 20vw;
+    margin-left: 40vw;
+    margin-top: 15vh;
+    background-image: url('https://icons.veryicon.com/png/o/miscellaneous/data-product-icon-library/loading-spinner.png');
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+  
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.tournament-list {
+    position: fixed;
+    top: 13%;
+    left: 1%;
+    width: 28%;
+    height: 50%;
+    background-color: rgba(255,255,255,.7);
+    font-size: 150%;
+    border-radius: 25px;
+}
+
+.tournament-create {
+    position: fixed;
+    top: 65%;
+    left: 1%;
+    width: 28%;
+    height: 34%;
+    background-color: rgba(255,255,255,.7);
+    font-size: 150%;
+    border-radius: 25px;
+}
+
+.tournament-view {
+    position: fixed;
+    top: 13%;
+    left: 30%;
+    width: 69%;
+    height: 86%;
+    background-color: rgba(255,255,255,.7);
+    font-size: 150%;
+    border-radius: 25px;
+}
+
+.tournament-table {
+    position: fixed;
+    top: 19%;
+    left: 2%;
+    width: 26%;
+    height: 42%;
+    background-color: white;
+    border: solid 1px grey;
+    overflow-y: scroll;
+}
+
+.tournament-table table {
+    width: 100%;
+}
+
+.tournament-table table thead {
+    font-size: 1rem;
+    background-color: grey;
+}
+
+.tournament-table table tbody tr {
+    cursor: pointer;
+    border-bottom: 1px solid grey;
+}
+
+.tournament-table table tbody tr:hover {
+    background-color: lightgrey;
+}
+
+.tournament-table table tbody tr td {
+    font-size: .8rem;
+    max-height: 10%;
+}
+
+.colTId {
+    width: 12%;
+}
+
+.colTName {
+    width: 65%;
+}
+
+.colTType {
+    width: 23%;
+}
+
+.tournament-fixture {
+    background-color: white;
+    border: solid 1px grey;
+    position: fixed;
+    top: 19%;
+    left: 31%;
+    width: 67%;
+    height: 78%;
+    overflow: scroll;
+}
+
+.view-title {
+    height: 10%;
+    margin-top: -1%;
+}
+
+.game-container {
+    width: 300px;
+    padding: 0;
+    position: absolute;
+}
+
+.winner {
+    background-image: linear-gradient(to top, darkgreen, lightgreen);
+    border: solid 2px black;
+    border-radius: 1rem;
+    position: absolute;
+    height: 50px;
+    width: 210px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.loser {
+    background-image: linear-gradient(to top, darkred, rgb(238, 144, 144));
+    border: solid 2px black;
+    border-radius: 1rem;
+    position: absolute;
+    height: 50px;
+    width: 210px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.winner h6 {
+    width: 100%;
+    margin-top: 7%;
+}
+
+.loser h6 {
+    width: 100%;
+    margin-top: 7%;
+}
+
+.vs-line {
+    position: absolute;
+    top: 25px;
+    left: 210px;
+    width: 50px;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+}
+
+.wn-line {
+    position: absolute;
+    border-top: solid 2px black;
+    height: 3px;
+    width: 40px;
+    left: 260px;
+}
+
+.selected {
+    background-color: lightgreen;
+}
+
+.tournament-form {
+    background-color: white;
+    border: solid 1px grey;
+    position: fixed;
+    top: 70%;
+    left: 2%;
+    width: 26%;
+    height: 27%;
+}
+
+.tournament-form div {
+    margin-top: 1%;
+}
+
+#saveButtonT {
+    width: 100%;
+    height: 35%;
+}
+
+#create-tournament-btn {
+    width: 50%;
+    margin-left: 24%;
+}
+
+.player-select-container {
+    position: fixed;
+    z-index: 2;
+    width: 50%;
+    height: 70%;
+    left: 25%;
+    top: 15%;
+    background-color: white;
+    border-radius: .5rem;
+}
+
+.player-select {
+    width: 94%;
+    margin-left: 3%;
+    height: 85%;
+    border: solid 1px lightgrey;
+}
+
+#autoSelect {
+    width: 50%;
+    height: 10%;
+    margin-left: 0;
+    padding-top: 1%;
+    display: flex;
+    background-color: lightgrey;
+}
+
+#quantityPlayers {
+    width: 50%;
+    height: 10%;
+    margin-left: 50%;
+    display: flex;
+    background-color: lightgrey;
+    margin-top: -5.7%;
+    padding-top: 1%;
+}
+
+.control-label-player {
+    margin-left: 1%;
+}
+
+.control-player {
+    margin-top: -5%;
+    margin-left: 3%;
+}
+
+#quantityPlayers label {
+    padding-top: 0.5%;
+}
+
+#quantityPlayers input {
+    height: 80%;
+    margin-top: 0%;
+}
+
+.player-select-table {
+    height: 75%;
+    border: solid 1px grey;
+    overflow-y: scroll;
+}
+
+.playerId {
+    width: 10%;
+}
+
+.playerName {
+    width: 60%;
+}
+
+.playerCheck {
+    width: 30%;
+}
+
+.create-t-btn {
+    height: 12%;
+    width: 25%;
+    margin-left: 20%;
+}
+
+.active-btn {
+    background-image: linear-gradient(to top, darkgreen, lightgreen);
+}
+
+.cancel-t-btn {
+    height: 12%;
+    width: 25%;
+    margin-left: 10%;
+    background-image: linear-gradient(to top, darkred, rgb(238, 144, 144));
+}
+
+.player-select-table table thead {
+    background-color: grey;
+}
+
+.player-select-table table tbody tr:hover {
+    background-color: lightgrey;
+}
+
+.table-blocked {
+    width: 93.6%;
+    height: 63.5%;
+    background-color: rgba(0,0,0,.6);
+    z-index: 3;
+    position: absolute;
+}

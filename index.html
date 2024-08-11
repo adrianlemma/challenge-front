@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>GeoPagos - Challenge</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body onload="initPlayer()" class="body-class">
+        <div id="processing" class="processing hide"></div>
+        <div id="splash" class="load"><div class="spin"></div><h2>Cargando Recursos...</h2></div>
+        <div class="geo-logo"></div>
+        <button id="toggleButton" class="change-view" onclick="toggleView()">Administrar Torneos</button>
+        <h4 class="annotation">Powered by <a href="https://www.linkedin.com/in/marcelo-lemma-0508a7139/" target="_blank">Marcelo Adrian Lemma</a></h4>
+        <div id="player-list-container" class="players-list">
+            <div class="div-header">
+                <h3 class="list-title">Lista de Jugadores</h3>
+                <a class="label-show">Mostrar:</a>
+                <button id="listMale" class="generic-btn male-btn" onclick="toggleListGender('M')">Masculino</button>
+                <button id="listFemale" class="generic-btn" onclick="toggleListGender('F')">Femenino</button>
+            </div>
+            <div class="players-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="colId">ID</th>
+                            <th class="colName">Nombre</th>
+                            <th class="colStatus">Estado</th>
+                            <th class="colAction">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playersDataTable"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="player-form-container" class="player-create">
+            <div class="div-header">
+                <h3 id="save-title" class="list-title">Guardar Jugador</h3>
+                <a class="label-show">Genero:</a>
+                <button id="saveMale" class="generic-btn male-btn" onclick="toggleSaveGender('M')">Masculino</button>
+                <button id="saveFemale" class="generic-btn" onclick="toggleSaveGender('F')">Femenino</button>
+            </div>
+            <div class="save-form">
+                <div id="saveName">
+                    <label class="control-label" for="name">Nombre: </label>
+                    <input class="control" type="text" name="name" id="name" placeholder="Ingrese un nombre" oninput="textInput(this.value)">
+                </div>
+                <div id="saveSkill">
+                    <lavel class="control-label" for="skill">Habilidad: <span id="skillValue">50</span></lavel>
+                    <input class="control" type="range" id="skill" name="skill" min="0" max="100" value="50" oninput="updateValue('skillValue',this.value)">
+                </div>
+                <div id="saveStrength">
+                    <lavel class="control-label" for="strength">Fuerza: <span id="strengthValue">50</span></lavel>
+                    <input class="control" type="range" id="strength" name="strength" min="0" max="100" value="50" oninput="updateValue('strengthValue',this.value)">
+                </div>
+                <div id="saveSpeed">
+                    <lavel class="control-label" for="speed">Velocidad: <span id="speedValue">25</span></lavel>
+                    <input class="control" type="range" id="speed" name="speed" min="0" max="50" value="25" oninput="updateValue('speedValue',this.value)">
+                </div>
+                <div id="saveReactionTime" class="hide">
+                    <lavel class="control-label" for="reactionTime">Tiempo de reacción: <span id="reactionTimeValue">0.5</span></lavel>
+                    <input class="control" type="range" id="reactionTime" name="reactionTime" min="0" max="100" value="50" oninput="updateValue('reactionTimeValue',this.value / 100)">
+                </div>
+            </div>
+            <div id="saveButtons">
+                <input id="cancel-save-btn" class="generic-btn" type="submit" value="Cancelar" disabled onclick="clearSaveForm()">
+                <input id="save-save-btn" class="generic-btn" type="submit" value="Guardar" disabled onclick="savePlayerData()">
+            </div>
+        </div>
+        <div id="player-details-container" class="player-details">
+            <div class="div-header">
+                <h3 class="list-title">Detalles de Jugador</h3>
+            </div>
+            <div class="details-form">
+                <div>
+                    <label class="control-label">ID: </label>
+                    <div class="text-detail"><a id="detailId">--</a></div>
+                    <label class="control-label">Nombre: </label>
+                    <div class="text-detail"><a id="detailName">-----</a></div>
+                </div>
+                <div>
+                    <lavel class="control-label">Habilidad: </lavel>
+                    <div class="level-bar"><div id="detailSkill"><a>0</a></div></div>
+                </div>
+                <div  id="toggleDetailST">
+                    <lavel class="control-label">Fuerza: </lavel>
+                    <div class="level-bar"><div id="detailStrength"><a>0</a></div></div>
+                </div>
+                <div  id="toggleDetailSP">
+                    <lavel class="control-label">Velocidad: </lavel>
+                    <div class="level-bar"><div id="detailSpeed"><a>0</a></div></div>
+                </div>
+                <div id="toggleDetailRT">
+                    <lavel class="control-label">Tiempo de reacción: </lavel>
+                    <div class="level-bar"><div id="detailReactionTime"><a>0</a></div></div>
+                </div>
+                <div>
+                    <lavel class="control-label">Género: </lavel>
+                    <div class="text-detail"><a id="detailGender">-----</a></div>
+                </div>
+            </div>
+            <div class="details-form"></div>
+        </div>
+        <div id="tournament-list-container" class="tournament-list hide">
+            <div class="div-header">
+                <h3 class="list-title">Torneos</h3>
+            </div>
+            <div class="tournament-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="colTId">ID</th>
+                            <th class="colTName">Nombre</th>
+                            <th class="colTType">Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tournamentDataTable"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="tournament-create-container" class="tournament-create hide">
+            <div class="div-header">
+                <h3 class="list-title">Crear Torneo</h3>
+            </div>
+            <div class="tournament-form">
+                <div id="tournamentName">
+                    <label class="control-label" for="nameT">Nombre: </label>
+                    <input class="control" type="text" name="nameT" id="nameT" placeholder="Ingrese un nombre" oninput="tournamentNameInput(this.value)">
+                </div>
+                <div id="tournamentDate">
+                    <lavel class="control-label" for="dateT">Fecha: </lavel>
+                    <input class="control" type="date" id="dateT" name="dateT" placeholder="DD-MM-YYYY" oninput="setDate(this.value)">
+                </div>
+                <div id="tournamentTypeM">
+                    <lavel class="control-label" for="typeTM">Masculino: </lavel>
+                    <input class="control" type="checkbox" id="typeTM" name="typeTM" checked="checked" oninput="checkGender('M')">
+                </div>
+                <div id="tournamentTypeF">
+                    <lavel class="control-label" for="typeTF">Femenino: </lavel>
+                    <input class="control" type="checkbox" id="typeTF" name="typeTF" oninput="checkGender('F')">
+                </div>
+                <div id="saveButtonT">
+                    <input id="create-tournament-btn" class="generic-btn" type="submit" value="Crear" disabled="true" onclick="createTournament()">
+                </div>
+            </div>
+        </div>
+        <div id="tournament-view-container" class="tournament-view hide">
+            <div class="div-header">
+                <h3 id="tournament-title" class="list-title view-title">Vista Torneo</h3>
+            </div>
+            <div id="tournament-fixture" class="tournament-fixture"></div>
+        </div>
+        <div id="player-select-container" class="player-select-container hide">
+            <div class="div-header">
+                <h3 class="list-title">Seleccione los jugadores</h3>
+            </div>
+            <div class="player-select">
+                <div id="autoSelect">
+                    <lavel class="control-label-player" for="typeTF">Seleccionar automáticamente: </lavel>
+                    <input class="control-player" type="checkbox" id="auto-select" name="auto-select" oninput="autoselect(this.checked)">
+                </div>
+                <div id="quantityPlayers">
+                    <label class="control-label-player" for="playerQ">Cantidad de jugadores: </label>
+                    <input class="control-player" type="number" name="playerQ" id="playerQ" disabled="true" placeholder="Ingrese un numero" oninput="validateQuantity(this.value)">
+                </div>
+                <div class="player-select-table">
+                    <div id="table-blocked" class="table-blocked hide"></div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="playerId">Player ID</th>
+                                <th class="playerName">Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody id="player-select-table-data"></tbody>
+                    </table>
+                </div>
+                <button id="call-create-tournament" class="generic-btn create-t-btn" onclick="callTournamentCreate()" disabled=true>Crear Torneo</button>
+                <button class="generic-btn cancel-t-btn" onclick="cancelTournament()">Cancelar</button>
+            </div>
+        </div>
+        <script src="player-script.js"></script>
+        <script src="tournament-script.js"></script>
+    </body>
+</html>
