@@ -666,3 +666,116 @@
     z-index: 3;
     position: absolute;
 }
+
+@media screen and (max-width: 1250px) and (max-height: 607px) {
+    .dataDelete, .dataEdit {
+        font-size: 0.6rem;
+    }
+
+    .list-title {
+        font-size: 1rem;
+    }
+
+    .change-view {
+        font-size: 1rem;
+    }
+
+    .tournament-form {
+        height: 22%;
+    }
+
+    #create-tournament-btn {
+        transform: translateY(-15%);
+    }
+
+    #tournamentDate, #tournamentName {
+        margin-top: -1%;
+    }
+
+    .control-label-player {
+        font-size: 0.7rem;
+    }
+
+    #quantityPlayers {
+        transform: translateY(-10%);
+    }
+
+    #quantityPlayers input {
+        width: 30%;
+    }
+
+    .playerName, .playerId {
+        font-size: .9rem;
+    }
+
+    .annotation {
+        font-size: .9rem;
+    }
+}
+
+@media screen and (max-width: 820px) and (max-height: 450px) {
+    .dataDelete, .dataEdit {
+        font-size: 0.5rem;
+    }
+
+    .list-title {
+        font-size: .9rem;
+    }
+
+    .change-view {
+        font-size: .9rem;
+    }
+
+    .tournament-form {
+        height: 22%;
+    }
+
+    #create-tournament-btn {
+        transform: translateY(-15%);
+    }
+
+    #tournamentDate, #tournamentName, #tournamentTypeM, #tournamentTypeF {
+        margin-top: -2%;
+    }
+
+    #tournamentDate input, #tournamentName input {
+        height: 18%;
+        font-size: .7rem;
+    }
+
+    .control-label-player {
+        font-size: 0.6rem;
+    }
+
+    #quantityPlayers {
+        transform: translateY(-10%);
+    }
+
+    #quantityPlayers input {
+        width: 30%;
+    }
+
+    .playerName, .playerId {
+        font-size: .8rem;
+    }
+
+    .annotation {
+        font-size: .8rem;
+    }
+
+    .label-show {
+        font-size: .7rem;
+    }
+
+    #listMale, #listFemale, #saveMale, #saveFemale {
+        font-size: .6rem;
+    }
+
+    .level-bar div a {
+        font-size: .8rem;
+    }
+
+    .control-label {
+        font-size: .8rem;
+    }
+}

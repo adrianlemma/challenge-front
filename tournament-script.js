@@ -4,7 +4,7 @@ var urlBase = 'https://geopagos-challenge.onrender.com/geopagos/'
 
 var checkedGender = 'M'
 var tournamentDate = null
-var tournamentName = null
+var tournamentName = ''
 var playerListToSelect
 var quantity = 0
 
@@ -137,18 +137,29 @@ function checkGender(gender) {
 
 function setDate(date) {
     tournamentDate = date
-    if (date != null && tournamentName != null) {
+    if (date != null && tournamentName != '' && validYear(date)) {
         document.getElementById('create-tournament-btn').classList.add('save-btn')
         document.getElementById('create-tournament-btn').disabled = false
+    } else {
+        document.getElementById('create-tournament-btn').classList.remove('save-btn')
+        document.getElementById('create-tournament-btn').disabled = true
     }
 }
 
 function tournamentNameInput(name) {
     tournamentName = name
-    if (name != null && tournamentDate != null) {
+    if (name != '' && tournamentDate != null && validYear(tournamentDate)) {
         document.getElementById('create-tournament-btn').classList.add('save-btn')
         document.getElementById('create-tournament-btn').disabled = false
+    } else {
+        document.getElementById('create-tournament-btn').classList.remove('save-btn')
+        document.getElementById('create-tournament-btn').disabled = true
     }
+}
+
+function validYear(date) {
+    var parts = date.split('-')
+    return 1700 < parts[0] && 2100 > parts[0]
 }
 
 function createTournament() {
@@ -160,7 +171,7 @@ function createTournament() {
 function loadPlayers() {
     var gender = document.getElementById('typeTM').checked? 'M' : 'F'
     playerListToSelect = fullData.filter((data) => data.gender == gender)
-    playerListToSelect = playerListToSelect.filter((data) => data.active = true)
+    playerListToSelect = playerListToSelect.filter((data) => data.active == true)
     var tableData = ""
     for (var i = 0; i < playerListToSelect.length; i++) {
         tableData += '<tr id="playerT'+i+'" onclick="selectPlayer('+i+')"><td class="pid">'+playerListToSelect[i].playerId+'</td><td>'+playerListToSelect[i].name+'</td></tr>'
@@ -234,6 +245,7 @@ function validateQuantity(value) {
 }
 
 function callTournamentCreate() {
+    document.getElementById('processing').style.zIndex = 4
     var isAuto = document.getElementById('auto-select').checked
     var date = document.getElementById('dateT').value
     var request = {
@@ -252,14 +264,12 @@ function callTournamentCreate() {
     } else {
         request.competitors = quantity
     }
-    var url = urlBase + '/tournament'
-    isAuto ? urlBase += '/random' : null
+    var url = urlBase + 'tournament'
+    isAuto ? url += '/random' : null
     callService(url, request)
 }
 
 function callService(url, request) {
-    console.log(url)
-    console.log(request)
     fetch(url, {
         method: "POST",
         body: JSON.stringify(request),
@@ -270,10 +280,15 @@ function callService(url, request) {
     })
     .then(response => response.json())
     .then(function (json) {
-        console.log(json)
+        initTournament()
+        tournamentShow = json
+        drawTournamentView()
+        cancelTournament()
+        document.getElementById('processing').style.zIndex = 1
     })
     .catch(function (err) {
         cancelTournament()
+        document.getElementById('processing').style.zIndex = 1
         console.log(err)
     })
 }
